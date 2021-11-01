@@ -1,5 +1,3 @@
-// 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
-
 require('dotenv').config();  
 const sgMail = require('@sendgrid/mail');
 sgMail.setApiKey(process.env.API_KEY);
@@ -20,12 +18,12 @@ async function checkPrice() {
     const priceNumber = parseFloat(priceString.replace('$', ''))
     if (priceNumber < minPrice) {
       await sendEmail(
-        'Price Is Low',
-        `The price on ${url} has dropped below ${minPrice}`
+        'Price Dropped!',
+        `Visit ${url} to purchase the item right now!`
       );
     }
   } catch (e) {
-    await sendEmail('Amazon Price Checker Error', e.message);
+    await sendEmail('Error', e.message);
     throw e;
   }
 }
